@@ -1,0 +1,10 @@
+C:\Users\hamid\source\repos\interview\MoviesSolution\Db\bin\Debug\netcoreapp3.1\Db.deps.json
+C:\Users\hamid\source\repos\interview\MoviesSolution\Db\bin\Debug\netcoreapp3.1\Db.dll
+C:\Users\hamid\source\repos\interview\MoviesSolution\Db\bin\Debug\netcoreapp3.1\Db.pdb
+C:\Users\hamid\source\repos\interview\MoviesSolution\Db\obj\Debug\netcoreapp3.1\Db.GeneratedMSBuildEditorConfig.editorconfig
+C:\Users\hamid\source\repos\interview\MoviesSolution\Db\obj\Debug\netcoreapp3.1\Db.AssemblyInfoInputs.cache
+C:\Users\hamid\source\repos\interview\MoviesSolution\Db\obj\Debug\netcoreapp3.1\Db.AssemblyInfo.cs
+C:\Users\hamid\source\repos\interview\MoviesSolution\Db\obj\Debug\netcoreapp3.1\Db.csproj.CoreCompileInputs.cache
+C:\Users\hamid\source\repos\interview\MoviesSolution\Db\obj\Debug\netcoreapp3.1\Db.dll
+C:\Users\hamid\source\repos\interview\MoviesSolution\Db\obj\Debug\netcoreapp3.1\Db.pdb
+C:\Users\hamid\source\repos\interview\MoviesSolution\Db\obj\Debug\netcoreapp3.1\Db.csproj.AssemblyReference.cache
