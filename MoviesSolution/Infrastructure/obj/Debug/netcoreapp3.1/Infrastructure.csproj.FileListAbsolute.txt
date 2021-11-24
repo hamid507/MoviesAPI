@@ -1,9 +1,0 @@
-C:\Users\hamid\source\repos\interview\MoviesSolution\Infrastructure\bin\Debug\netcoreapp3.1\Infrastructure.deps.json
-C:\Users\hamid\source\repos\interview\MoviesSolution\Infrastructure\bin\Debug\netcoreapp3.1\Infrastructure.dll
-C:\Users\hamid\source\repos\interview\MoviesSolution\Infrastructure\bin\Debug\netcoreapp3.1\Infrastructure.pdb
-C:\Users\hamid\source\repos\interview\MoviesSolution\Infrastructure\obj\Debug\netcoreapp3.1\Infrastructure.GeneratedMSBuildEditorConfig.editorconfig
-C:\Users\hamid\source\repos\interview\MoviesSolution\Infrastructure\obj\Debug\netcoreapp3.1\Infrastructure.AssemblyInfoInputs.cache
-C:\Users\hamid\source\repos\interview\MoviesSolution\Infrastructure\obj\Debug\netcoreapp3.1\Infrastructure.AssemblyInfo.cs
-C:\Users\hamid\source\repos\interview\MoviesSolution\Infrastructure\obj\Debug\netcoreapp3.1\Infrastructure.csproj.CoreCompileInputs.cache
-C:\Users\hamid\source\repos\interview\MoviesSolution\Infrastructure\obj\Debug\netcoreapp3.1\Infrastructure.dll
-C:\Users\hamid\source\repos\interview\MoviesSolution\Infrastructure\obj\Debug\netcoreapp3.1\Infrastructure.pdb
