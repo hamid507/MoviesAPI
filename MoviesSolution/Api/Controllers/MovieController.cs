@@ -48,7 +48,7 @@ namespace Api.Controllers
         }
 
         [Route("GetById")]
-        [HttpPost]
+        [HttpGet]
         public IActionResult GetMovieById(Guid movieId)
         {
             var serviceResult = _service.GetMovieById(movieId);
@@ -57,10 +57,19 @@ namespace Api.Controllers
         }
 
         [Route("GetByImdbMovieId")]
-        [HttpPost]
+        [HttpGet]
         public IActionResult GetMovieByImdbMovieId(string imdbMovieId)
         {
             var serviceResult = _service.GetMovieByImdbMovieId(imdbMovieId);
+
+            return this.GenerateActionResult(serviceResult);
+        }
+
+        [Route("GetAllNames")]
+        [HttpGet]
+        public IActionResult GetAllMovies()
+        {
+            var serviceResult = _service.GetAllMovieNames();
 
             return this.GenerateActionResult(serviceResult);
         }

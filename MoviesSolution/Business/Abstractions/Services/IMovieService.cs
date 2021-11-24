@@ -15,5 +15,6 @@ namespace Business.Abstractions.Services
         ServiceResult<MovieDto> GetMovieById(Guid movieId);
         ServiceResult<MovieDto> GetMovieByImdbMovieId(string imdbMovieId);
         ServiceResult<bool> MarkMovieAsWatched(Guid userId, Guid movieId);
+        ServiceResult<List<string>> GetAllMovieNames();
     }
 }

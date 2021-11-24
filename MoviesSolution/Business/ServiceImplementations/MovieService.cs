@@ -11,6 +11,7 @@ using Domain.Entities.Lookup;
 using System;
 using System.Collections.Generic;
 using System.Linq.Expressions;
+using System.Linq;
 
 namespace Business.ServiceImplementations
 {
@@ -197,6 +198,21 @@ namespace Business.ServiceImplementations
             _unitOfWork.Commit();
 
             return ServiceResult<bool>.Success();
+        }
+
+        public ServiceResult<List<string>> GetAllMovieNames()
+        {
+            bool movieExistsInDb = _unitOfWork.MovieRepository.Any();
+
+            if (!movieExistsInDb)
+            {
+                return ServiceResult<List<string>>.AlreadyExists($"No any movie found in the database.");
+            }
+
+            var movies = _unitOfWork.MovieRepository.GetAll();
+            var movieNames = movies.Select(m => m.Title).ToList();
+
+            return ServiceResult<List<string>>.Ok(movieNames);
         }
     }
 }
