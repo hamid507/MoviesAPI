@@ -276,7 +276,7 @@ namespace Business.ServiceImplementations
         {
             try
             {
-                Expression<Func<Movie, bool>> predicate = (m => m.Title == title);
+                Expression<Func<Movie, bool>> predicate = (mov => mov.Title == title);
 
                 var movies = _unitOfWork.MovieRepository.Get(predicate);
                 bool movieExistsInDb = movies.Any();
