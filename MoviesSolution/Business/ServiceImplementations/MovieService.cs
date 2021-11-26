@@ -276,7 +276,9 @@ namespace Business.ServiceImplementations
         {
             try
             {
-                var movies = _unitOfWork.MovieRepository.Get(m => m.Title == title);
+                Expression<Func<Movie, bool>> predicate = m => m.Title == title;
+
+                var movies = _unitOfWork.MovieRepository.Get(predicate);
                 bool movieExistsInDb = movies.Any();
 
                 if (!movieExistsInDb)
@@ -284,7 +286,7 @@ namespace Business.ServiceImplementations
                     return ServiceResult<double>.AlreadyExists($"No any movie with the title '{title}' found in the database.");
                 }
 
-                Movie movie = movies.FirstOrDefault(m => m.Title == title);
+                Movie movie = movies.FirstOrDefault(predicate);
 
                 return ServiceResult<double>.Ok(movie?.ImdbRating ?? -1);
             }
