@@ -1,6 +1,7 @@
 ﻿using AutoMapper;
 using Business.Abstractions.Services;
 using Business.Dtos;
+using Business.Logging;
 using Business.Utility;
 using DataAccess.Abstractions;
 using Domain.Entities.Data;
@@ -76,7 +77,7 @@ namespace Business.ServiceImplementations
             }
             catch (Exception ex)
             {
-                //TODO: Log
+                LogHelper.LogExceptionStackTrace(ex);
             }
         }
     }

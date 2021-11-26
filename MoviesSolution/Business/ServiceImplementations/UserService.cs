@@ -1,6 +1,7 @@
 ﻿using AutoMapper;
 using Business.Abstractions.Services;
 using Business.Dtos;
+using Business.Logging;
 using Business.Models;
 using Business.Validations;
 using DataAccess.Abstractions;
@@ -24,6 +25,8 @@ namespace Business.ServiceImplementations
 
         public ServiceResult<IEnumerable<WatchItemDto>> GetUserWatchlist(Guid userId)
         {
+            try
+            {
             bool userExists = _unitOfWork.UserRepository.Any(user => user.Id == userId);
 
             if (!userExists)
@@ -35,39 +38,61 @@ namespace Business.ServiceImplementations
             var result = _mapper.Map<IEnumerable<WatchItemDto>>(watchList);
 
             return ServiceResult<IEnumerable<WatchItemDto>>.Ok(result);
+            }
+            catch (Exception ex)
+            {
+                LogHelper.LogExceptionStackTrace(ex);
+                return ServiceResult<IEnumerable<WatchItemDto>>.Error(ex);
+            }
         }
 
         public ServiceResult<IEnumerable<UserDto>> GetUsers()
         {
-            var dbUsers = _unitOfWork.UserRepository.GetAll();
+            try
+            {
+                var dbUsers = _unitOfWork.UserRepository.GetAll();
 
-            var result = _mapper.Map<IEnumerable<UserDto>>(dbUsers);
+                var result = _mapper.Map<IEnumerable<UserDto>>(dbUsers);
 
-            return ServiceResult<IEnumerable<UserDto>>.Ok(result);
+                return ServiceResult<IEnumerable<UserDto>>.Ok(result);
+            }
+            catch (Exception ex)
+            {
+                LogHelper.LogExceptionStackTrace(ex);
+                return ServiceResult<IEnumerable<UserDto>>.Error(ex);
+            }
         }
 
         public ServiceResult<Guid> NewUser(string name, string surname, string email)
         {
-            var newUser = new UserDto()
+            try
             {
-                Name = name,
-                Surname = surname,
-                Email = email
-            };
+                var newUser = new UserDto()
+                {
+                    Name = name,
+                    Surname = surname,
+                    Email = email
+                };
 
-            UserValidator userValidator = new UserValidator();
-            var validationResult = userValidator.Validate(newUser);
+                UserValidator userValidator = new UserValidator();
+                var validationResult = userValidator.Validate(newUser);
 
-            if (!validationResult.IsValid)
-            {
-                return ServiceResult<Guid>.Error($"Validation error: '{string.Join(Environment.NewLine, validationResult.Errors)}'");
+                if (!validationResult.IsValid)
+                {
+                    return ServiceResult<Guid>.Error($"Validation error: '{string.Join(Environment.NewLine, validationResult.Errors)}'");
+                }
+
+                var dbResult = _mapper.Map<User>(newUser);
+                _unitOfWork.UserRepository.Add(dbResult);
+                _unitOfWork.Commit();
+
+                return ServiceResult<Guid>.Ok(dbResult.Id, $"New user with id = '{dbResult.Id}' has been created.");
             }
-
-            var dbResult = _mapper.Map<User>(newUser);
-            _unitOfWork.UserRepository.Add(dbResult);
-            _unitOfWork.Commit();
-
-            return ServiceResult<Guid>.Ok(dbResult.Id, $"New user with id = '{dbResult.Id}' has been created.");
+            catch (Exception ex)
+            {
+                LogHelper.LogExceptionStackTrace(ex);
+                return ServiceResult<Guid>.Error(ex);
+            }
         }
     }
 }

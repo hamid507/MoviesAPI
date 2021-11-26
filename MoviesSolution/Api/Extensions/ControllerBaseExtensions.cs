@@ -34,6 +34,10 @@ namespace Api.Extensions
                     {
                         return controllerBase.BadRequest(serviceResult.Message);
                     }
+                case ServiceResultType.Error:
+                    {
+                        return controllerBase.Problem(detail: serviceResult.Exception.StackTrace, statusCode: 500, title: serviceResult.Exception.Message);
+                    }
             }
 
             return controllerBase.Problem(serviceResult.Message ?? serviceResult.Exception.StackTrace);
