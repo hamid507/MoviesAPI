@@ -15,7 +15,8 @@ namespace Infrastructure.Services
             _config = configuration;
         }
 
-        public static string DefaultConnection { get { return _config.GetConnectionString("DefaultConnection"); } }
+        public static string DebugConnection { get { return _config.GetConnectionString("DebugConnection"); } }
+        public static string ReleaseConnection { get { return _config.GetConnectionString("ReleaseConnection"); } }
         public static string MigrationConnection { get { return _config.GetConnectionString("MigrationConnection"); } }
         public static string GetProperty(string name) => _config[name];
         public static string GetAppConstant(string name) => _config[$"AppConstants:{name}"];

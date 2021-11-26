@@ -1,5 +1,7 @@
 ﻿using DataAccess.Abstractions;
+using Infrastructure.Services;
 using Microsoft.EntityFrameworkCore;
+using Microsoft.EntityFrameworkCore.Infrastructure;
 using System;
 using System.Collections.Generic;
 using System.Diagnostics.CodeAnalysis;
@@ -12,9 +14,15 @@ namespace DataAccess.Persistence.DBContext
     {
         private readonly Dictionary<Type, object> _dbSets;
 
+        DatabaseFacade IDbContext.Database { get => Database; }
+
         public InterviewDBContext([NotNull] DbContextOptions options) : base(options)
         {
             _dbSets = new Dictionary<Type, object>();
+        }
+
+        protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
+        {
         }
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)

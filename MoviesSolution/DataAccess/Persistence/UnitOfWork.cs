@@ -19,6 +19,8 @@ namespace DataAccess.Persistence
         public UnitOfWork([NotNull] DbContextOptions options)
         {
             _dbContext = new InterviewDBContext(options);
+            _dbContext.Database.Migrate();
+
             _repositories = new Dictionary<Type, object>();
         }
 
