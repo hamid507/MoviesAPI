@@ -36,7 +36,7 @@ namespace Api.Extensions
                     }
                 case ServiceResultType.Error:
                     {
-                        return controllerBase.Problem(detail: serviceResult.Exception.StackTrace, statusCode: 500, title: serviceResult.Exception.Message);
+                        return controllerBase.Problem(detail: serviceResult.Exception?.StackTrace, statusCode: 500, title: serviceResult.Message ?? serviceResult.Exception?.Message ?? "Unknown error.");
                     }
             }
 

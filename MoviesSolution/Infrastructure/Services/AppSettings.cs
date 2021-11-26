@@ -1,8 +1,4 @@
 ﻿using Microsoft.Extensions.Configuration;
-using System;
-using System.Collections;
-using System.Collections.Generic;
-using System.Linq;
 
 namespace Infrastructure.Services
 {
@@ -15,9 +11,7 @@ namespace Infrastructure.Services
             _config = configuration;
         }
 
-        public static string DebugConnection { get { return _config.GetConnectionString("DebugConnection"); } }
-        public static string ReleaseConnection { get { return _config.GetConnectionString("ReleaseConnection"); } }
-        public static string MigrationConnection { get { return _config.GetConnectionString("MigrationConnection"); } }
+        public static string DefaultConnection { get { return _config.GetConnectionString("DefaultConnection"); } }
         public static string GetProperty(string name) => _config[name];
         public static string GetAppConstant(string name) => _config[$"AppConstants:{name}"];
     }
