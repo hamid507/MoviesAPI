@@ -271,5 +271,28 @@ namespace Business.ServiceImplementations
                 return ServiceResult<List<string>>.Error(ex);
             }
         }
+
+        public ServiceResult<double> GetImdbRatingByTitle(string title)
+        {
+            try
+            {
+                var movies = _unitOfWork.MovieRepository.Get(m => m.Title == title);
+                bool movieExistsInDb = movies.Any();
+
+                if (!movieExistsInDb)
+                {
+                    return ServiceResult<double>.AlreadyExists($"No any movie with the title '{title}' found in the database.");
+                }
+
+                Movie movie = movies.FirstOrDefault(m => m.Title == title);
+
+                return ServiceResult<double>.Ok(movie?.ImdbRating ?? -1);
+            }
+            catch (Exception ex)
+            {
+                LogHelper.LogExceptionStackTrace(ex);
+                return ServiceResult<double>.Error(ex);
+            }
+        }
     }
 }

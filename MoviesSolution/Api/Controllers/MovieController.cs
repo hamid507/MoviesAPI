@@ -82,5 +82,14 @@ namespace Api.Controllers
 
             return this.GenerateActionResult(serviceResult);
         }
+
+        [Route("GetImdbRatingByTitle")]
+        [HttpPost]
+        public IActionResult MarkMovieWatched(string title)
+        {
+            var serviceResult = _service.GetImdbRatingByTitle(title);
+
+            return this.GenerateActionResult(serviceResult);
+        }
     }
 }
